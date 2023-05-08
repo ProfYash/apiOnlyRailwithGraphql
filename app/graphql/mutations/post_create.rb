@@ -13,12 +13,13 @@ module Mutations
     def resolve(body:, title:, user_id:)
       user = User.find(user_id)
       if !user
-        { error: "Couldnt create post" }
+        { errors: "Couldn't find user" }
       end
-      if user.posts.create(body: body, title: title)
+      post = user.posts.build(body: body, title: title)
+      if post.save
         { post: post }
       else
-        { error: "Couldnt create post" }
+        { errors: post.errors.full_messages.join(", ") }
       end
     end
   end
