@@ -1,5 +1,6 @@
 module Types
   class MutationType < Types::BaseObject
+    field :post_create, mutation: Mutations::PostCreate
     field :user_delete, mutation: Mutations::UserDelete
     field :user_update, mutation: Mutations::UserUpdate
     field :user_create, mutation: Mutations::UserCreate
